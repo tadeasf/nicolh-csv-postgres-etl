@@ -1,3 +1,5 @@
 python-dotenv
 sqlalchemy
 psycopg2
+paramiko
+pandas
