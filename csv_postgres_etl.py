@@ -20,6 +20,7 @@ from config import (
     SFTP_PASSWORD,
     SFTP_PORT,
 )
+from pandas_transformation import simple_transform
 
 # Connect to the PostgreSQL database
 engine = create_engine(f"postgresql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}/{DB_NAME}")
@@ -58,6 +59,9 @@ def process_dataframe(df, filename):
     existing_data = pd.read_sql_query(query, con=engine)
     df = pd.concat([df, existing_data]).drop_duplicates(keep=False)
 
+    # ? data transformation imported from data transfomation script
+    # ? this keeps the data pipeline tidy and easy to maintain
+    df = simple_transform(df)
     # Append data from the DataFrame to the table
     try:
         df.to_sql(CsvData.__tablename__, engine, if_exists="append", index=False)

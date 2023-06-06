@@ -11,3 +11,11 @@ Setup pro import csv souborů ze sftp serveru do postgresql databáze via sqlalc
 ### csv_postgres_etl.py
 
 Tenhle skript je naše pipelina. Běží nonstop v pozadí a co hodinu se kouká do /home/tadeas/nicolh/csvs, jestli se ve složce náhodou neobjevil nový csv soubor. Pokud se objevil, naimportuje menší csvčka do paměti a rovnou appenduje do csv_data tabulky v postgresql databázi (nebo ji vytvoří, pokud neexistuje). V případě větších csvs jsem implementoval batch import/export, aby nám nedošla paměť.
+
+### pandas_transformation.py
+
+Tohle je skript, kam můžeš přidávat transformace v pandas. dycky si definuj funkci, naimportuj jí do cvs_postgres_etl a přidej do funkce process_dataframe. Je to lepší dělat takhle, páčto je pak kód easier to maintain a nebude ti bobtnat etl pipelina.
+
+## TODOs
+
+Skript, kterej bude transformovat data v postgresql via sqlalchemy
