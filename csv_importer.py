@@ -26,7 +26,7 @@ def get_user_input():
     sftp_user = input("SFTP username: ")
 
     # getpass allows you to securely input the password without displaying it
-    sftp_password = getpass.getpass("SFTP password: ")
+    sftp_password = input("SFTP password: ")
 
     return local_filepath, sftp_host, sftp_port, sftp_user, sftp_password
 
